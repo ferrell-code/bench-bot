@@ -45,30 +45,32 @@ function BenchContext(app, config) {
 
 //::node::import::native::sr25519::transfer_keep_alive::paritydb::small
 
+const cargoRun = "cargo run --profile production";
+
 var BenchConfigs = {
     "import": {
         title: "Import Benchmark (random transfers)",
-        branchCommand: 'cargo run --release -p node-bench --quiet -- node::import::native::sr25519::transfer_keep_alive::rocksdb::medium --json'
+        branchCommand: cargoRun + ' -p node-bench --quiet -- node::import::native::sr25519::transfer_keep_alive::rocksdb::medium --json'
     },
     "import/small": {
         title: "Import Benchmark (Small block (10tx) with random transfers)",
-        branchCommand: 'cargo run --release -p node-bench --quiet -- node::import::native::sr25519::transfer_keep_alive::rocksdb::small --json'
+        branchCommand: cargoRun + ' -p node-bench --quiet -- node::import::native::sr25519::transfer_keep_alive::rocksdb::small --json'
     },
     "import/large": {
         title: "Import Benchmark (Large block (500tx) with random transfers)",
-        branchCommand: 'cargo run --release -p node-bench --quiet -- node::import::native::sr25519::transfer_keep_alive::rocksdb::large --json'
+        branchCommand: cargoRun + ' -p node-bench --quiet -- node::import::native::sr25519::transfer_keep_alive::rocksdb::large --json'
     },
     "import/full-wasm": {
         title: "Import Benchmark (Full block with wasm, for weights validation)",
-        branchCommand: 'cargo run --release -p node-bench --quiet -- node::import::wasm::sr25519::transfer_keep_alive::rocksdb::full --json'
+        branchCommand: cargoRun + ' -p node-bench --quiet -- node::import::wasm::sr25519::transfer_keep_alive::rocksdb::full --json'
     },
     "import/wasm": {
         title: "Import Benchmark via wasm (random transfers)",
-        branchCommand: 'cargo run --release -p node-bench --quiet -- node::import::wasm::sr25519::transfer_keep_alive::rocksdb::medium --json'
+        branchCommand: cargoRun + ' -p node-bench --quiet -- node::import::wasm::sr25519::transfer_keep_alive::rocksdb::medium --json'
     },
     "ed25519": {
         title: "Import Benchmark (random transfers, ed25519 signed)",
-        branchCommand: 'cargo run --release -p node-bench --quiet -- node::import::native::ed25519::transfer_keep_alive::rocksdb::medium --json'
+        branchCommand: cargoRun + ' -p node-bench --quiet -- node::import::native::ed25519::transfer_keep_alive::rocksdb::medium --json'
     }
 }
 
@@ -142,7 +144,7 @@ var SubstrateRuntimeBenchmarkConfigs = {
     "pallet": {
         title: "Benchmark Runtime Pallet",
         branchCommand: [
-            'cargo run --release',
+            cargoRun,
             '--features=runtime-benchmarks',
             '--manifest-path=bin/node/cli/Cargo.toml',
             '--',
@@ -162,7 +164,7 @@ var SubstrateRuntimeBenchmarkConfigs = {
     "substrate": {
         title: "Benchmark Runtime Substrate Pallet",
         branchCommand: [
-            'cargo run --release',
+            cargoRun,
             '--features=runtime-benchmarks',
             '--manifest-path=bin/node/cli/Cargo.toml',
             '--',
@@ -181,7 +183,7 @@ var SubstrateRuntimeBenchmarkConfigs = {
     },
     "custom": {
         title: "Benchmark Runtime Custom",
-        branchCommand: 'cargo run --release --features runtime-benchmarks --manifest-path bin/node/cli/Cargo.toml -- benchmark',
+        branchCommand: cargoRun + ' --features runtime-benchmarks --manifest-path bin/node/cli/Cargo.toml -- benchmark',
     }
 }
 
@@ -189,7 +191,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
     "pallet": {
         title: "Benchmark Runtime Pallet",
         branchCommand: [
-            'cargo run --release',
+            cargoRun,
             '--features=runtime-benchmarks',
             '--',
             'benchmark',
@@ -208,7 +210,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
     "polkadot": {
         title: "Benchmark Runtime Polkadot Pallet",
         branchCommand: [
-            'cargo run --release',
+            cargoRun,
             '--features=runtime-benchmarks',
             '--',
             'benchmark',
@@ -227,7 +229,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
     "kusama": {
         title: "Benchmark Runtime Kusama Pallet",
         branchCommand: [
-            'cargo run --release',
+            cargoRun,
             '--features=runtime-benchmarks',
             '--',
             'benchmark',
@@ -246,7 +248,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
     "westend": {
         title: "Benchmark Runtime Westend Pallet",
         branchCommand: [
-            'cargo run --release',
+            cargoRun,
             '--features=runtime-benchmarks',
             '--',
             'benchmark',
@@ -264,7 +266,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
     },
     "custom": {
         title: "Benchmark Runtime Custom",
-        branchCommand: 'cargo run --release --features runtime-benchmarks -- benchmark',
+        branchCommand: cargoRun + ' --features runtime-benchmarks -- benchmark',
     }
 }
 
@@ -281,7 +283,7 @@ var AcalaRuntimeBenchmarkConfigs = {
     "module": {
         title: "Benchmark Runtime Module",
         branchCommand: [
-            'cargo run --release --color=never',
+            cargoRun + ' --color=never',
             '--bin=acala',
             '--features=runtime-benchmarks',
             '--features=with-mandala-runtime',
@@ -302,7 +304,7 @@ var AcalaRuntimeBenchmarkConfigs = {
     "acala": {
         title: "Benchmark Runtime Acala Module",
         branchCommand: [
-            'cargo run --release --color=never',
+            cargoRun + ' --color=never',
             '--bin=acala',
             '--features=runtime-benchmarks',
             '--features=with-acala-runtime',
@@ -323,7 +325,7 @@ var AcalaRuntimeBenchmarkConfigs = {
     "karura": {
         title: "Benchmark Runtime Karura Module",
         branchCommand: [
-            'cargo run --release --color=never',
+            cargoRun + ' --color=never',
             '--bin=acala',
             '--features=runtime-benchmarks',
             '--features=with-karura-runtime',
@@ -344,7 +346,7 @@ var AcalaRuntimeBenchmarkConfigs = {
     "mandala": {
         title: "Benchmark Runtime Mandala Module",
         branchCommand: [
-            'cargo run --release --color=never',
+            cargoRun + ' --color=never',
             '--bin=acala',
             '--features=runtime-benchmarks',
             '--features=with-mandala-runtime',
@@ -364,15 +366,15 @@ var AcalaRuntimeBenchmarkConfigs = {
     },
     "custom-mandala": {
         title: "Benchmark Mandala Runtime Custom",
-        branchCommand: 'cargo run --release --color=never --bin acala --features=with-mandala-runtime --features runtime-benchmarks -- benchmark',
+        branchCommand: cargoRun + ' --color=never --bin acala --features=with-mandala-runtime --features runtime-benchmarks -- benchmark',
     },
     "custom-karura": {
         title: "Benchmark Karura Runtime Custom",
-        branchCommand: 'cargo run --release --color=never --bin acala --features=with-karura-runtime --features runtime-benchmarks -- benchmark',
+        branchCommand: cargoRun + ' --color=never --bin acala --features=with-karura-runtime --features runtime-benchmarks -- benchmark',
     },
     "custom-acala": {
         title: "Benchmark Acala Runtime Custom",
-        branchCommand: 'cargo run --release --color=never --bin acala --features=with-acala-runtime --features runtime-benchmarks -- benchmark',
+        branchCommand: cargoRun + ' --color=never --bin acala --features=with-acala-runtime --features runtime-benchmarks -- benchmark',
     }
 }
 
