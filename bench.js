@@ -566,7 +566,7 @@ async function benchEVM(app, config) {
         const branchCommand = `make bench-evm`;
         var { error, stdout, stderr } = benchContext.runTask(branchCommand, `Benching branch: ${config.branch}...`);
 
-        benchContext.runTask(`git add runtime/common/src/gas_to_weight_ratio.rs`, `Adding new files.`);
+        benchContext.runTask(`git add runtime/common/src/`, `Adding new files.`);
         benchContext.runTask(`git commit -m "${branchCommand}"`, `Committing changes.`);
         if (config.pushToken) {
             benchContext.runTask(`git push https://${config.pushToken}@github.com/${config.owner}/${config.repo}.git HEAD`, `Pushing commit with pushToken.`);
