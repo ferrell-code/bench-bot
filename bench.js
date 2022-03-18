@@ -283,7 +283,7 @@ var AcalaRuntimeBenchmarkConfigs = {
     "module": {
         title: "Benchmark Runtime Module",
         branchCommand: [
-            cargoRun + ' --color=never',
+            'cargo run --release --color=never',
             '--bin=acala',
             '--features=runtime-benchmarks',
             '--features=with-mandala-runtime',
