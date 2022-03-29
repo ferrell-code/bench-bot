@@ -310,7 +310,7 @@ var AcalaRuntimeBenchmarkConfigs = {
             '--features=with-acala-runtime',
             '--',
             'benchmark',
-            '--chain=acala-latest',
+            '--chain=acala-dev',
             '--steps=50',
             '--repeat=20',
             '--pallet={pallet_name}',
