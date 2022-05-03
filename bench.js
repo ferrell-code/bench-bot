@@ -149,6 +149,7 @@ var SubstrateRuntimeBenchmarkConfigs = {
             '--manifest-path=bin/node/cli/Cargo.toml',
             '--',
             'benchmark',
+            'pallet',
             '--chain=dev',
             '--steps=50',
             '--repeat=20',
@@ -169,6 +170,7 @@ var SubstrateRuntimeBenchmarkConfigs = {
             '--manifest-path=bin/node/cli/Cargo.toml',
             '--',
             'benchmark',
+            'pallet',
             '--chain=dev',
             '--steps=50',
             '--repeat=20',
@@ -183,7 +185,7 @@ var SubstrateRuntimeBenchmarkConfigs = {
     },
     "custom": {
         title: "Benchmark Runtime Custom",
-        branchCommand: cargoRun + ' --features runtime-benchmarks --manifest-path bin/node/cli/Cargo.toml -- benchmark',
+        branchCommand: cargoRun + ' --features runtime-benchmarks --manifest-path bin/node/cli/Cargo.toml -- benchmark pallet',
     }
 }
 
@@ -195,6 +197,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
             '--features=runtime-benchmarks',
             '--',
             'benchmark',
+            'pallet',
             '--chain=polkadot-dev',
             '--steps=50',
             '--repeat=20',
@@ -214,6 +217,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
             '--features=runtime-benchmarks',
             '--',
             'benchmark',
+            'pallet',
             '--chain=polkadot-dev',
             '--steps=50',
             '--repeat=20',
@@ -233,6 +237,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
             '--features=runtime-benchmarks',
             '--',
             'benchmark',
+            'pallet',
             '--chain=kusama-dev',
             '--steps=50',
             '--repeat=20',
@@ -252,6 +257,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
             '--features=runtime-benchmarks',
             '--',
             'benchmark',
+            'pallet',
             '--chain=westend-dev',
             '--steps=50',
             '--repeat=20',
@@ -266,7 +272,7 @@ var PolkadotRuntimeBenchmarkConfigs = {
     },
     "custom": {
         title: "Benchmark Runtime Custom",
-        branchCommand: cargoRun + ' --features runtime-benchmarks -- benchmark',
+        branchCommand: cargoRun + ' --features runtime-benchmarks -- benchmark pallet',
     }
 }
 
@@ -289,6 +295,7 @@ var AcalaRuntimeBenchmarkConfigs = {
             '--features=with-mandala-runtime',
             '--',
             'benchmark',
+            'pallet',
             '--chain=dev',
             '--steps=50',
             '--repeat=20',
@@ -310,6 +317,7 @@ var AcalaRuntimeBenchmarkConfigs = {
             '--features=with-acala-runtime',
             '--',
             'benchmark',
+            'pallet',
             '--chain=acala-dev',
             '--steps=50',
             '--repeat=20',
@@ -331,6 +339,7 @@ var AcalaRuntimeBenchmarkConfigs = {
             '--features=with-karura-runtime',
             '--',
             'benchmark',
+            'pallet',
             '--chain=karura-dev',
             '--steps=50',
             '--repeat=20',
@@ -352,6 +361,7 @@ var AcalaRuntimeBenchmarkConfigs = {
             '--features=with-mandala-runtime',
             '--',
             'benchmark',
+            'pallet',
             '--chain=dev',
             '--steps=50',
             '--repeat=20',
@@ -366,20 +376,20 @@ var AcalaRuntimeBenchmarkConfigs = {
     },
     "custom-mandala": {
         title: "Benchmark Mandala Runtime Custom",
-        branchCommand: cargoRun + ' --color=never --bin acala --features=with-mandala-runtime --features runtime-benchmarks -- benchmark',
+        branchCommand: cargoRun + ' --color=never --bin acala --features=with-mandala-runtime --features runtime-benchmarks -- benchmark pallet',
     },
     "custom-karura": {
         title: "Benchmark Karura Runtime Custom",
-        branchCommand: cargoRun + ' --color=never --bin acala --features=with-karura-runtime --features runtime-benchmarks -- benchmark',
+        branchCommand: cargoRun + ' --color=never --bin acala --features=with-karura-runtime --features runtime-benchmarks -- benchmark pallet',
     },
     "custom-acala": {
         title: "Benchmark Acala Runtime Custom",
-        branchCommand: cargoRun + ' --color=never --bin acala --features=with-acala-runtime --features runtime-benchmarks -- benchmark',
+        branchCommand: cargoRun + ' --color=never --bin acala --features=with-acala-runtime --features runtime-benchmarks -- benchmark pallet',
     }
 }
 
 function checkRuntimeBenchmarkCommand(command) {
-    let required = ["benchmark", "--pallet", "--extrinsic", "--execution", "--wasm-execution", "--steps", "--repeat", "--chain"];
+    let required = ["benchmark", "pallet", "--pallet", "--extrinsic", "--execution", "--wasm-execution", "--steps", "--repeat", "--chain"];
     let missing = [];
     for (const flag of required) {
         if (!command.includes(flag)) {
